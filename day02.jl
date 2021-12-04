@@ -13,26 +13,22 @@ function solve_part_one(lines)
     position = 0
     depth = 0
     
-    for line in lines
-        (command, number) = line
-        println("$command -> $number")
+    for (command, units) in lines
         if command == "forward"
-            position += number
+            position += units
         elseif command == "down"
-            depth += number
+            depth += units
         elseif command == "up"
-            depth -= number
+            depth -= units
         else
             throw("Command $command not implemented!")
         end
     end
-    
-    solution = position * depth
-    @test solution == 2102357
-    return solution
+    position * depth
 end
 
 solution = solve_part_one(lines)
+@test solution == 2102357
 println("Part 1: $solution")
 
 # Part 2
@@ -42,25 +38,21 @@ function solve_part_two(lines)
     depth = 0
     aim = 0
     
-    for line in lines
-        (command, number) = line
-        println("$command -> $number")
+    for (command, units) in lines
         if command == "forward"
-            position += number
-            depth += aim * number
+            position += units
+            depth += aim * units
         elseif command == "down"
-            aim += number
+            aim += units
         elseif command == "up"
-            aim -= number
+            aim -= units
         else
             throw("Command $command not implemented!")
         end
     end
-    
-    solution = position * depth
-    @test solution == 2101031224
-    return solution
+    position * depth
 end
 
 solution = solve_part_two(lines)
+@test solution == 2101031224
 println("Part 2: $solution")
